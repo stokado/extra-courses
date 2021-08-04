@@ -1,6 +1,6 @@
 #include <iostream>
-#include <sstream>
 #include <numeric>
+#include <sstream>
 
 using namespace std;
 
@@ -22,16 +22,6 @@ public:
         }
     }
 
-    void SetNumerator(int new_numerator)
-    {
-        num = new_numerator;
-    }
-
-    void SetDenominator(int new_denominator)
-    {
-        denom = new_denominator;
-    }
-
     int Numerator() const {
         return num;
     }
@@ -48,6 +38,36 @@ private:
 bool operator == (const Rational& lhs, const Rational& rhs)
 {
     return (lhs.Denominator() == rhs.Denominator() && lhs.Numerator() == rhs.Numerator());
+}
+
+Rational operator + (const Rational& lhs, const Rational& rhs)
+{
+    return {
+        lhs.Numerator() * rhs.Denominator() + rhs.Numerator() * lhs.Denominator(),
+        lhs.Denominator() * rhs.Denominator()
+    };
+}
+
+Rational operator - (const Rational& lhs, const Rational& rhs)
+{   
+    return {
+        lhs.Numerator() * rhs.Denominator() - rhs.Numerator() * lhs.Denominator(),
+        lhs.Denominator() * rhs.Denominator()
+    };
+}
+
+Rational operator * (const Rational& lhs, const Rational& rhs)
+{
+    return {
+        lhs.Numerator() * rhs.Numerator(),
+        lhs.Denominator() * rhs.Denominator()
+    };
+}
+
+Rational operator / (const Rational& lhs, const Rational& rhs)
+{
+    Rational inverted_rhs {rhs.Denominator(), rhs.Numerator()};
+    return lhs * inverted_rhs;
 }
 
 ostream& operator <<(ostream& stream, const Rational& rat)
@@ -74,8 +94,7 @@ istream& operator >> (istream& stream, Rational& rat)
             }
             else
             {
-                rat.SetNumerator(num);
-                rat.SetDenominator(denom);
+                rat = Rational(num, denom);
                 rat = Rational(rat.Numerator(), rat.Denominator());
             }
         }
@@ -83,9 +102,13 @@ istream& operator >> (istream& stream, Rational& rat)
     return stream;
 }
 
+bool operator <(const Rational& lhs, const Rational& rhs)
+{
+    return (lhs - rhs).Numerator() < 0;
+}
 
-
-int main() {
+int main() 
+{
     {
         ostringstream output;
         output << Rational(-6, 8);
@@ -149,7 +172,6 @@ int main() {
             return 6;
         }
     }
-
     cout << "OK" << endl;
     return 0;
 }
