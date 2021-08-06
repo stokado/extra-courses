@@ -141,8 +141,8 @@ string EnsureCommand(stringstream& stream)
     {
         return cmd;
     }
-        else
-            throw runtime_error("Unknown command: " + cmd);
+    else
+        throw runtime_error("Unknown command: " + cmd);
 }
 
 void EnsureNextSymbolAndSkip(stringstream& stream)
@@ -213,7 +213,7 @@ int main()
                         {
                             calendar.Find(date);
                         }
-                 }
+                    }
                     catch(exception& ex)
                     {
                         cout << ex.what() << '\n';
