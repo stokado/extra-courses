@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
 
+// Need more testing doesn't work in all cases;
+
 using namespace std;
 
 void SortArray(vector<pair<int,int>>& v){
     for (int i = 0; i < v.size(); i++){
         for (int j = 0; j < v.size() - 1 - i; j++){
-            if (v[j] < v[j + 1]){
+            if (v[j] > v[j + 1]){
                 pair<int, int> temp = v[j];
                 v[j] = v[j + 1];
                 v[j + 1] = temp;
