@@ -16,7 +16,14 @@ void BubbleSort(vector<int>& v){
 }
 
 int main(){
-    vector<int> v = {-3, 1, 7, 7, 88};
+    int n;
+    cin >> n;
+    vector<int> v;
+    for (int i = 0; i < n; i++){
+        int temp;
+        cin >> temp;
+        v.push_back(temp);
+    }
     BubbleSort(v);
     for (const int& i : v){
         cout << i << " ";
