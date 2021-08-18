@@ -19,7 +19,14 @@ void InsertionSort(vector<int>& v){
 }
 
 int main(){
-    vector<int> v = {2, 3, 1, 3, 49, 6, 6};
+    int n;
+    cin >> n;
+    vector<int> v;
+    for (int i = 0; i < n; i++){
+        int temp;
+        cin >> temp;
+        v.push_back(temp);
+    }
     InsertionSort(v);
     for (const int& i : v){
         cout << i << " ";
