@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// O(n^2)
+
 void SelectionSort(vector<int>& v){
     for (int i = 0; i < v.size() - 1; ++i){
         int min_ind = i;  

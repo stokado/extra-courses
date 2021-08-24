@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// O(n + v.size())
+
 int main(){
     int n;
     cin >> n;
