@@ -25,36 +25,35 @@ class Student :  public Person{
 	private:
 		vector<int> testScores;  
 	public:
-        Student(string firstName, string lastName, int id, vector<int> scores){
-            Person
-            this->testScores = scores;
-        }
-        char calculate(){
-            int avg = 0;
-            for (const int& i : testScores){
-                avg += i;
-            }
-            avg /= testScores.size();
-            if (avg < 40){
-                return 'T';
-            } else if (avg >= 40 && avg < 55){
-                return 'D';
-            } else if (avg >= 55 && avg < 70){
-                return 'P';
-            } else if (avg >= 70 && avg < 80){
-                return 'A';
-            } else if (avg >= 80 && avg < 90){
-                return 'E';
-            } else {
-                return 'O';
-            }
-        }
-
-        /*	
-        *   Function Name: calculate
-        *   Return: A character denoting the grade.
-        */
-        // Write your function here
+        
+	Student(string firstName, string lastName, int id, vector<int> scores) : Person(firstName, lastName, id){
+		
+		this->testScores = scores;
+	}
+	
+	char calculate(){
+		if (!testScores.size()){
+			return 'T';
+		}
+		int score;
+		for (const int& i : testScores){
+			score += i;
+		}
+		score /= testScores.size();
+		if (score < 40){
+			return 'T';
+		} else if (score >= 40 && score < 55){
+			return 'D';
+		} else if (score >= 55 && score < 70){
+			return 'P';
+		} else if (score >= 70 && score < 80){
+			return 'A';
+		} else if (score >= 80 && score < 90){
+			return 'E';
+		} else{
+			return 'O';
+		}
+	}
 };
 
 int main() {
